@@ -12,28 +12,26 @@ import {InfoJson,InfoJson2} from'../info/info'
     useEffect(() => {
         setCarga(true)
         const promesa= new Promise((res, rej) => {      
-            setTimeout(()=>{return {infoJson, infoJson2}},2000)
-       });
-       return(
-        <div className="producto">
-        <img src={props.imagen} />
-        <div className="infoAbajo">
-            <div className="titulo">
-                {props.titulo}
-            </div>
-            <div className="autor">
-                {props.autor}
-            </div>
-            <Link to={`/producto/${props.id}`}><button>Ver mas</button></Link>
+            setTimeout(()=>{return {InfoJson,InfoJson2}},2000)
+        });
+        promesa.then((result) => {      
+            setProd(result);     
+            setCarga(false);    
+        });
+    });  
 
-        </div>
-    </div>
-    )
-      promesa.then((result) => {      
-           setProd(result);     
-           setCarga(false);    
-      });
-});      
+    return(<div className="producto">
+           <img src={props.imagen} />
+           <div className="infoAbajo">
+               <div className="titulo">
+                   {props.titulo}
+               </div>
+               <div className="autor">
+                   {props.autor}
+               </div>
+               <Link to={`/producto/${props.id}`}><button>Ver mas</button></Link>
+           </div>
+       </div>)      
 }
-export default Item
 
+export default Item
